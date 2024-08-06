@@ -1,49 +1,21 @@
-import { useState } from 'react'
-//importando firebase
-import appFirebase from '../src/credenciales'
-import {getAuth, onAuthStateChanged } from 'firebase/auth'
-const auth = getAuth(appFirebase);
-//importando componentes
-import Login from '../src/components/Login'
-import Home from '../src/components/Home'
-import {Routes} from "react-router";
-import {BrowserRouter, Route} from "react-router-dom"
-
-
-import './App.css'
-
-
+// src/App.js
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './components/Home';
+import Signup from './components/Signup';
+import Login from './components/Login';
+import PostForm from './components/PostForm';
 
 function App() {
-
   return (
-    <div>  
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}/>
-          <Route path="/Login.jsx" element={<Login />}/>
-        </Routes>
-      </BrowserRouter>
-    </div>
-  )
-  
-  const [usuario, setUsuario] = useState(null) 
-
-onAuthStateChanged(auth, (usuarioFirebase)=>{
-  if (usuarioFirebase)  {
-    setUsuario(usuarioFirebase)
-  }
-  else {
-    setUsuario(null)
-  }
-})
-
-  return (
-    
-     <div>
-      {usuario ? <Home correoUsuario = {usuario.email} /> : <Login/>}
-     </div>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" exact element={<Home />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/post" element={<PostForm />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;

@@ -1,11 +1,10 @@
-// src/components/Home.js
-import React from 'react';
+import Navbar from "./Navbar";
 
-const Home = ({ correoUsuario }) => {
+const Home = () => {
   return (
     <div>
-      <h2>Bienvenido {correoUsuario}</h2>
-      {/* Aquí puedes agregar más lógica para la página de inicio */}
+      <h2>Bienvenido</h2>
+      <Navbar />
     </div>
   );
 };
